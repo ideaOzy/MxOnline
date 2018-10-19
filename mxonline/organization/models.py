@@ -29,6 +29,7 @@ class CourseOrg(models.Model):
 
 
 class Teacher(models.Model):
+    org = models.ForeignKey(CourseOrg, verbose_name="所属机构")
     name = models.CharField(max_length=50, verbose_name="教师名")
     work_years = models.IntegerField(default=0, verbose_name="工作年限")
     work_company = models.CharField(max_length=50, verbose_name="就职公司")
