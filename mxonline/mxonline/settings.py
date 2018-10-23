@@ -30,9 +30,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = (
+    "users.views.CustomBackend",
+)
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'operation.apps.OperationConfig',
     'xadmin',
     'crispy_forms',
+    'captcha',
 ]
 # 此处为了使自定义的UserProfile生效
 AUTH_USER_MODEL = "users.UserProfile"
@@ -133,3 +136,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+EMAIL_HOST = "smtp"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "zhangying@django.com"
+EAMIL_HOST_PASSWORD = "admin"
+EMAIL_USE_TLS = False
+EMAIL_FROM = "zhangying@django.com"

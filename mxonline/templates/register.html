@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-
+{% load staticfiles %}
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
     <title>慕学网注册</title>
-    <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 
 </head>
 <body>
@@ -133,24 +133,33 @@
                     <!--</form>-->
                 <!--</div>-->
                 <div class="tab-form">
-                    <form id="email_register_form" autocomplete="off">
+                    <form id="email_register_form" method="post" action="{% url 'register' %}">
                         <input type='hidden' name='csrfmiddlewaretoken' value='gTZljXgnpvxn0fKZ1XkWrM1PrCGSjiCZ' />
-                        <div class="form-group marb20">
+                        <div class="form-group marb20 {% if regiter_form.errors.email %} errorput{% endif %}">
                             <label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-                            <input  type="text" id="id_email" name="account" placeholder="请输入您的邮箱地址" />
+                            <input  type="text" id="id_email" name="email" placeholder="请输入您的邮箱地址" value="{{ register_form.email.value }}"/>
                         </div>
-                        <div class="form-group marb8">
+                        <div class="form-group marb8 {% if register_form.errors.password %} errorput{% endif %}">
                             <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-                            <input type="password" id="id_password" name="password" placeholder="请输入6-20位非中文字符密码" />
+                            <input type="password" id="id_password" name="password" placeholder="请输入6-20位非中文字符密码" value="{{ register_form.password.value }}/>
                         </div>
-                        <div class="form-group marb8 captcha1">
+                        <div class="form-group marb8 captcha1 {% if login_form.errors.captcha %} errorput{% endif %}">
                             <label>验&nbsp;证&nbsp;码</label>
-                            <input autocomplete="off" class="form-control-captcha email-register-captcha" id="email-register-captcha_1" name="captcha_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha email-register-captcha" id="email-register-captcha_0" name="captcha_0" placeholder="请输入验证码" type="hidden" value="00bf8887548d891c1cd23b1abd871c1b8076f0ff" /> &nbsp;<img src="/captcha/image/00bf8887548d891c1cd23b1abd871c1b8076f0ff/" alt="captcha" class="captcha" />
+                            {{ register_form.captcha }}
+                            <!--<input autocomplete="off" class="form-control-captcha email-register-captcha" id="email-register-captcha_1" name="captcha_1" placeholder="请输入验证码" type="text" /> -->
+                            <!--<input class="form-control-captcha email-register-captcha" id="email-register-captcha_0" name="captcha_0" placeholder="请输入验证码" type="hidden" value="00bf8887548d891c1cd23b1abd871c1b8076f0ff" /> &nbsp;-->
+                            <!--<img src="/captcha/image/00bf8887548d891c1cd23b1abd871c1b8076f0ff/" alt="captcha" class="captcha" />-->
                         </div>
-                        <div class="error btns" id="jsEmailTips"></div>
+                        <div class="error btns" id="jsEmailTips">
+                            {% for key,error in register_form.errors.items %}
+                            {{ error }}
+                            {% endfor %}
+                            {{ msg }}
+                        </div>
                         <div class="auto-box marb8">
                         </div>
-                        <input class="btn btn-green" id="jsEmailRegBtn" type="button" value="注册并登录" />
+                        <input class="btn btn-green" id="jsEmailRegBtn" type="submit" value="注册并登录" />
+                        {% csrf_token %}
                     </form>
                 </div>
                 <p class="form-p">已有账号？<a href="login.html">[立即登录]</a></p>
@@ -160,9 +169,9 @@
 </section>
 
 <input id="isLogin" type="hidden" value="False"/>
-<script src="../js/jquery.min.js" type="text/javascript"></script>
-<script src="../js/unslider.js" type="text/javascript"></script>
-<script src="../js/validateDialog.js"  type="text/javascript"></script>
-<script src="../js/login.js"  type="text/javascript"></script>
+<script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/validateDialog.js' %}"  type="text/javascript"></script>
+<script src="{% static 'js/login.js' %}"  type="text/javascript"></script>
 </body>
 </html>

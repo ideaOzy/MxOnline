@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 mysqlclient = "*"
 pillow = "*"
+django-simple-captcha = "*"
 
 [dev-packages]
 
