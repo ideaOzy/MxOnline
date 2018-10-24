@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'captcha',
+    'pure_pagination',
 ]
 # 此处为了使自定义的UserProfile生效
 AUTH_USER_MODEL = "users.UserProfile"
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -143,3 +145,6 @@ EMAIL_HOST_USER = "zhangying@django.com"
 EAMIL_HOST_PASSWORD = "admin"
 EMAIL_USE_TLS = False
 EMAIL_FROM = "zhangying@django.com"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

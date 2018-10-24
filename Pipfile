@@ -8,6 +8,7 @@ django = "*"
 mysqlclient = "*"
 pillow = "*"
 django-simple-captcha = "*"
+django-pure-pagination = "*"
 
 [dev-packages]
 

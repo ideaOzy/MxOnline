@@ -34,3 +34,5 @@ def send_register_email(email, send_type="register"):
         email_body = "请点击下面的链接激活你的账号：http://127.0.0.1:8080/active/{0}".format(code)
 
         # send_mail()
+    elif send_type == "forget":
+        pass

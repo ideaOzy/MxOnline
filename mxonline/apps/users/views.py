@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password
 
 # 并集运算
 from .models import UserProfile, EmailVerifyRecord
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ForgetForm
 from utils.email_send import send_register_email
 
 
@@ -60,7 +60,7 @@ class RegisterView(View):
             user_profile = UserProfile()
             user_profile.username = email
             user_profile.email = email
-            user_profile.is_active = False
+            # user_profile.is_active = False
             user_profile.password = make_password(pass_word)
             user_profile.save()
 
@@ -79,3 +79,14 @@ class ActiveUserView(View):
                 user = UserProfile.objects.get(email=email)
                 user.is_active = True
         return render(request, "login.html")
+
+
+class ForgetPwdView(View):
+    def get(self, request):
+        forget_form = ForgetForm()
+        return render(request, "forgetpwd.html", {"forget_form": forget_form})
+
+    def post(self, request):
+        forget_form = ForgetForm(request.POST)
+        if forget_form.is_valid():
+            email = request.POST.get("email", "")
