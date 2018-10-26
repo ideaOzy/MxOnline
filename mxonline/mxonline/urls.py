@@ -19,8 +19,8 @@ from django.views.generic import TemplateView
 from django.views.static import serve
 
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView
-from organization.views import OrgView
 from mxonline.settings import MEDIA_ROOT
+
 
 import xadmin
 
@@ -32,6 +32,6 @@ urlpatterns = [
     path("captcha/", include('captcha.urls')),
     re_path('active/(?P<active_code>.*)/', ActiveUserView.as_view(), name="user_active"),
     path("forget/", ForgetPwdView.as_view(), name="forget_pwd"),
-    path("org_list/", OrgView.as_view(), name="org_list"),
+    path("org/", include("organization.urls", namespace="org")),
     re_path(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
 ]

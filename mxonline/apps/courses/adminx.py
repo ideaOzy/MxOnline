@@ -5,13 +5,13 @@ import xadmin
 
 
 class CourseAdmin:
-    list_display = ("name", "desc", "detail", "degree",
+    list_display = ("name", "course_org", "desc", "detail", "degree",
                     "learn_times", "students", "fav_nums",
                     "image", "click_nums", "add_time")
-    search_fields = ("name", "desc", "detail", "degree",
+    search_fields = ("name", "course_org", "desc", "detail", "degree",
                      "learn_times", "students", "fav_nums",
                      "image", "click_nums", "add_time")
-    list_filter = ("name", "desc", "detail", "degree",
+    list_filter = ("name", "course_org", "desc", "detail", "degree",
                    "learn_times", "students", "fav_nums",
                    "image", "click_nums", "add_time")
 

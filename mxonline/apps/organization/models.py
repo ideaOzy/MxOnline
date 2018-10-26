@@ -22,6 +22,8 @@ class CourseOrg(models.Model):
     category = models.CharField(default="pxjg", max_length=50, choices=(("pxjg", "培训机构"), ("gr", "个人"), ("gx", "高校")), verbose_name="机构类别")
     click_nums = models.IntegerField(default=0, verbose_name="点击数")
     fav_nums = models.IntegerField(default=0, verbose_name="收藏数")
+    students = models.IntegerField(default=0, verbose_name="学习人数")
+    course_nums = models.IntegerField(default=0, verbose_name="课程数")
     image = models.ImageField(upload_to="org/%Y/%m", verbose_name="Logo")
     address = models.CharField(max_length=150, verbose_name="机构地址")
     city = models.ForeignKey(CityDict, verbose_name="所在城市", on_delete=models.CASCADE)
@@ -49,3 +51,6 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = "教师"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name

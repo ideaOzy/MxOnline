@@ -12,11 +12,11 @@ class CityDictAdmin:
 
 class CourseOrgAdmin:
     list_display = ("name", "desc", "category", "click_nums", "fav_nums",
-                    "image", "address", "city", "add_time")
+                    "students", "course_nums", "image", "address", "city", "add_time")
     search_fields = ("name", "desc", "category", "click_nums", "fav_nums",
-                     "image", "address", "city", "add_time")
+                     "students", "course_nums", "image", "address", "city", "add_time")
     list_filter = ("name", "desc", "category", "click_nums", "fav_nums",
-                   "image", "address", "city", "add_time")
+                   "students", "course_nums", "image", "address", "city", "add_time")
 
 
 class TeacherAdmin:
