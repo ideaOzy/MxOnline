@@ -1,2 +1,2 @@
 # MxOnline
-Django 联系项目
+Django 练手项目
